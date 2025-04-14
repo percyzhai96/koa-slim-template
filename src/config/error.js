@@ -1,0 +1,1 @@
+const NAME_PASSWORD_IS_REQUIRED = "name_password_is_required"
