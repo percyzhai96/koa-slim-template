@@ -12,7 +12,7 @@ class UserService {
   async findUserByName (name) {
     const statement = "SELECT * FROM `user` WHERE name = ?;"
     const result = await connection.execute(statement, [name])
-    return result
+    return result[0]
   }
 }
 

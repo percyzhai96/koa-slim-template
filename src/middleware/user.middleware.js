@@ -1,4 +1,5 @@
 const userService = require("../service/user.service")
+const md5password = require("../utils/md5-password")
 
 const vertifyUser = async (ctx, next) => {
   const user = ctx.request.body
@@ -15,10 +16,23 @@ const vertifyUser = async (ctx, next) => {
       code: '-1002',
       message: "用户名已经被占用~"
     }
-    return
+    return ctx.app.emit("error", "name_is_already_exists", ctx)
   }
-  // 执行下一个中间件(写不写await无所谓)
+
   await next()
 }
 
-module.exports = vertifyUser
+
+// 对用户密码进行加密
+const handlePassword = async (ctx, next) => {
+  // 1.取出我们的密码
+  const { password } = ctx.request.body
+  // 2. 对密码进行加密
+  ctx.request.body.password = md5password(password)
+  await next()
+}
+
+module.exports = {
+  vertifyUser,
+  handlePassword,
+}
