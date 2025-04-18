@@ -3,7 +3,6 @@ const md5password = require("../utils/md5-password")
 
 const vertifyUser = async (ctx, next) => {
   const user = ctx.request.body
-  console.log(user, "user")
   // 验证客户端传递过来的数据是否能够存储到数据库中
   const { name, password } = user
   if (!name || !password) {

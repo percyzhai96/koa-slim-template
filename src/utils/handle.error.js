@@ -1,5 +1,5 @@
 const app = require("../app")
-const { NAME_PASSWORD_IS_REQUIRED, NAME_IS_ALREADY_EXISTS, NAME_IS_NOT_EXISTS, PASSWORD_IS_INCORRENT } = require("../config/error")
+const { NAME_PASSWORD_IS_REQUIRED, NAME_IS_ALREADY_EXISTS, NAME_IS_NOT_EXISTS, PASSWORD_IS_INCORRENT, UNAUTHORITION } = require("../config/error")
 
 app.on("error", (error, ctx) => {
   let code = 0
