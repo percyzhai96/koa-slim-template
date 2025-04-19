@@ -12,6 +12,30 @@ class MomentController {
       data: result
     }
   }
+
+  // 查询用户列表
+  async list (ctx, next) {
+    const { offset, size } = ctx.query
+    const [result] = await momentService.queryList(offset, size)
+    ctx.body = {
+      code: 0,
+      message: "查询动态列表成功！",
+      data: result
+    }
+  }
+
+  // 查询用户列表想详情
+  async detail (ctx, next) {
+    // 获取动态id
+    const { momentId } = ctx.params
+    // 根据id查询具体详情
+    const result = await momentService.queryById(momentId)
+    ctx.body = {
+      code: 0,
+      message: "查询动态列表详情成功！",
+      data: result
+    }
+  }
 }
 
 
