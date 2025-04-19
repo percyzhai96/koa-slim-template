@@ -49,6 +49,17 @@ class MomentController {
     }
 
   }
+
+  // 删除某条动态
+  async remove (ctx, next) {
+    const { momentId } = ctx.params
+    const result = await momentService.remove(momentId)
+    ctx.body = {
+      code: 0,
+      message: "删除动态修改成功！",
+      data: result
+    }
+  }
 }
 
 
