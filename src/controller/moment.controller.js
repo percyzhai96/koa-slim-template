@@ -39,7 +39,15 @@ class MomentController {
 
   //修改动态
   async update (ctx, next) {
-    
+    const { momentId } = ctx.params
+    const { content } = ctx.request.body
+    const result = await momentService.update(content, momentId)
+    ctx.body = {
+      code: 0,
+      message: "动态修改成功！",
+      data: result
+    }
+
   }
 }
 

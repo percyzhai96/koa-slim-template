@@ -31,6 +31,13 @@ class MomentService {
     return result
 
   }
+
+  // 更改动态
+  async update (content, id) {
+    const statement = `UPDATE moment SET content = ? WHERE id = ?;`
+    const [result] = await connection.execute(statement, [content, id])
+    return result
+  }
 }
 
 module.exports = new MomentService()

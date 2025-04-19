@@ -1,5 +1,5 @@
 const app = require("../app")
-const { NAME_PASSWORD_IS_REQUIRED, NAME_IS_ALREADY_EXISTS, NAME_IS_NOT_EXISTS, PASSWORD_IS_INCORRENT, UNAUTHORITION } = require("../config/error")
+const { NAME_PASSWORD_IS_REQUIRED, NAME_IS_ALREADY_EXISTS, NAME_IS_NOT_EXISTS, PASSWORD_IS_INCORRENT, UNAUTHORITION, OPERATION_IS_ALLOWED } = require("../config/error")
 
 app.on("error", (error, ctx) => {
   let code = 0
@@ -24,6 +24,10 @@ app.on("error", (error, ctx) => {
     case UNAUTHORITION:
       code = -1005
       message = "接口未认证~"
+      break
+    case OPERATION_IS_ALLOWED:
+      code = -2001
+      message = "没有操作该资源的权限~"
   }
   ctx.body = { code, message }
 })
