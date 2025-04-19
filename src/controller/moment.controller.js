@@ -36,6 +36,11 @@ class MomentController {
       data: result
     }
   }
+
+  //修改动态
+  async update (ctx, next) {
+    
+  }
 }
 
 

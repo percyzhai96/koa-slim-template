@@ -9,5 +9,9 @@ momentRouter.post("/", verifyAuth, create)
 momentRouter.get("/", list)
 // 查询动态详情
 momentRouter.get("/:momentId", detail)
+// 删除动态
+
+// 修改动态:登录的用户才能修改动态
+momentRouter.patch("/:momentId", verifyAuth, update)
 
 module.exports = momentRouter
