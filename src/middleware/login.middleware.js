@@ -29,7 +29,11 @@ const verifyLogin = async (ctx, next) => {
 // 验证token
 const verifyAuth = async (ctx, next) => {
   const authorization = ctx.header.authorization
+  if (!authorization) {
+    return ctx.app.emit("error", UNAUTHORITION, ctx)
+  }
   const token = authorization.replace("Bearer ", "")
+
   try {
     const result = jwt.verify(token, PUBLIC_KEY, { algorithms: ['RS256'] })
     // 保存token信息
