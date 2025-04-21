@@ -64,18 +64,25 @@ class MomentController {
   // 给动态添加标签
   async addLabels (ctx, next) {
     // 获取参数
-    const lables = ctx.lables
+    const labels = ctx.labels
     const { momentId } = ctx.params
-    // 将moment_id和label_id添加到moment_label表中
-    for(const label of lables){
-      // 判断label_id是否和moment_id已经存在该数据
-      
-    }
-
-    // 给前端返回
-    ctx.body = {
-      code: 0,
-      message: ''
+    try {
+      for (const label of labels) {
+        const isExists = await momentService.hasLabel(momentId, label.id)
+        if (!isExists) {
+          // 不存在关系数据进行插入
+          await momentService.addLabel(momentId, label.id)
+        }
+      }
+      ctx.body = {
+        code: 0,
+        message: '为动态添加标签成功！'
+      }
+    } catch (error) {
+      ctx.body = {
+        code: -3001,
+        message: error
+      }
     }
   }
 
