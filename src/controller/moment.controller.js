@@ -81,7 +81,7 @@ class MomentController {
     } catch (error) {
       ctx.body = {
         code: -3001,
-        message: error
+        message: '为动态添加标签失败！'
       }
     }
   }
