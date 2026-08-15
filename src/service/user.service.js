@@ -15,7 +15,7 @@ class UserService {
     return result[0]
   }
 
-  // 
+  // 更新用户头像
   async updateUserAvatar (avatarUrl, userId) {
     const statement = 'UPDATE user SET avatar_url=? WHERE id=?;'
     const [result] = await connection.execute(statement, [avatarUrl, userId])
