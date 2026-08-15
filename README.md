@@ -1,4 +1,4 @@
-# coder-hub（koa-slim-template）
+# koa-slim-template
 
 一个基于 **Koa2** 打造的轻量级后端服务项目，实现了类社区/社交平台的常用接口能力：用户注册登录、发布动态（moment）、评论与回复、标签管理、头像上传等。
 
